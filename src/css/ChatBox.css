@@ -1,0 +1,138 @@
+/* ChatBox.css */
+
+.chat-container {
+    display: grid;
+    grid-template-columns: 300px auto;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #f0f2f5;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    /* Thêm thanh cuộn cho sidebar nếu cần */
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-info:hover {
+    background-color: #e0e0e0;
+}
+
+.user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info span {
+    font-weight: bold;
+}
+
+.messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Tin nhắn nhập */
+.message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    /* Khoảng cách giữa input và button */
+}
+
+/* Nút "Send" và "Logout" */
+.send-button,
+.logout-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #0084ff;
+    color: white;
+}
+
+.send-button:hover,
+.logout-button:hover {
+    background-color: #0056b3;
+}
+
+.logout-button {
+    margin-left: 10px;
+    background-color: red;
+}
+
+.logout-button:hover {
+    background-color: darkred;
+}
+
+/* Tin nhắn của người chat sẽ hiển thị bên phải */
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Tin nhắn của người nhận sẽ hiển thị ở bên trái */
+}
+
+/* Tin nhắn của người gửi */
+.sender-message {
+    align-self: flex-end;
+    /* Hiển thị tin nhắn của người gửi ở bên phải */
+    background-color: #0084ff;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Tin nhắn của người nhận */
+.receiver-message {
+    background-color: #ebebeb;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
