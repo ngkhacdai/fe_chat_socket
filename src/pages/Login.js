@@ -13,12 +13,12 @@ const Login = ({ setIsLoggedIn }) => {
         }
         try {
             const res = await axios.post('http://localhost:8000/api/v1/access/login', form);
-            console.log(res);
             if (res.data.status !== 200) {
-                alert(res.data.message)
+                return alert(res.data.message)
             }
             localStorage.setItem('token', res.data.metadata.token)
             localStorage.setItem('userId', res.data.metadata.userId)
+            setIsLoggedIn(true)
             navigate('/')
         } catch (err) {
             console.log(err);

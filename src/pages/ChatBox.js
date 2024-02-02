@@ -27,21 +27,21 @@ const ChatBox = () => {
                 const form = {
                     nameSearch: ''
                 }
-                const response = await axios.post(`${USERAPI}search`, form, {
+                await axios.post(`${USERAPI}search`, form, {
                     headers: {
                         'userId': localStorage.getItem('userId'),
                         'Authorization': localStorage.getItem('token')
                     }
-                });
-                setSearchResults(response.data.metadata.user);
+                }).then((res) => {
+                    setSearchResults(res.data.metadata.user);
+                })
+
             } catch (error) {
-                if (error.response.status === 500) {
-                    handleLogout()
-                }
+                handleLogout()
             }
         };
         data();
-    }, [messages]);
+    });
 
     useEffect(() => {
         socket.connect();
@@ -49,17 +49,19 @@ const ChatBox = () => {
         socket.on('connect', () => {
             console.log('Connected to server!');
         });
+
+        return () => {
+            socket.off('connect');
+            socket.off('newMessage');
+        };
+    }, [])
+    useEffect(() => {
         if (receiverId) {
             socket.on('chatHistory', (data) => {
                 setMessages(data);
             });
         }
-        return () => {
-            socket.off('connect');
-            socket.off('newMessage');
-            // Remove other event listeners if any
-        };
-    }, [])
+    }, [receiverId]); // Thêm receiverId vào dependency array để useEffect chỉ gọi lại khi receiverId thay đổi
 
     const sendMessage = async () => {
         if (inputValue.trim() !== '') {
@@ -124,7 +126,6 @@ const ChatBox = () => {
                 </div>
                 {searchResults.map((item, index) => (
                     <div key={index} className="user-info" onClick={() => handleClick(item)}>
-                        <img src={item.avatar} alt="User Avatar" />
                         <span>{item.username}</span>
                     </div>
                 ))}

@@ -7,12 +7,15 @@ import Register from './pages/Register';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('userId'));
 
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    setIsLoggedIn(userId);
+  }, []);
 
   return (
     <Router>
       <div className="app">
         <Routes>
-          {/* Nếu người dùng đã đăng nhập, chuyển hướng tới trang chat, ngược lại chuyển hướng tới trang đăng nhập */}
           <Route path="/" element={isLoggedIn ? <Navigate to="/chat" /> : <Navigate to="/login" />} />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
