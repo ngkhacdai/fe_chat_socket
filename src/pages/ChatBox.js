@@ -27,21 +27,21 @@ const ChatBox = () => {
                 const form = {
                     nameSearch: ''
                 }
-                await axios.post(`${USERAPI}search`, form, {
+                const response = await axios.post(`${USERAPI}search`, form, {
                     headers: {
                         'userId': localStorage.getItem('userId'),
                         'Authorization': localStorage.getItem('token')
                     }
-                }).then((res) => {
-                    setSearchResults(res.data.metadata.user);
-                })
-
+                });
+                setSearchResults(response.data.metadata.user);
             } catch (error) {
-                handleLogout()
+                handleLogout();
             }
         };
+
         data();
-    });
+
+    }, []);
 
     useEffect(() => {
         socket.connect();

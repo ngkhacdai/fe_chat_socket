@@ -13,7 +13,7 @@ const Login = ({ setIsLoggedIn }) => {
         }
         try {
             const res = await axios.post('http://localhost:8000/api/v1/access/login', form);
-            if (res.data.status !== 200) {
+            if (res.data.metadata.status === 401) {
                 return alert(res.data.message)
             }
             localStorage.setItem('token', res.data.metadata.token)
