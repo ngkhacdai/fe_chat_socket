@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import { USERAPI } from '../utils/config';
 
-const socket = io('http://192.168.1.187:8000', {
+const socket = io('https://be-chat-socket.onrender.com', {
     transports: ['websocket']
 });
 
@@ -61,7 +61,7 @@ const ChatBox = () => {
                 setMessages(data);
             });
         }
-    }, [receiverId]); // Thêm receiverId vào dependency array để useEffect chỉ gọi lại khi receiverId thay đổi
+    }, [receiverId]);
 
     const sendMessage = async () => {
         if (inputValue.trim() !== '') {

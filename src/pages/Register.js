@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/Register.css'; // Import CSS file for styling
 import axios from 'axios';
+import { API } from '../utils/config';
 
 const Register = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('');
@@ -16,7 +17,7 @@ const Register = ({ setIsLoggedIn }) => {
             password
         }
         try {
-            const res = await axios.post('http://localhost:8000/api/v1/access/register', form);
+            const res = await axios.post(`${API}access/register`, form);
             if (res.data.status !== 200) {
                 alert(res.data.message)
             }

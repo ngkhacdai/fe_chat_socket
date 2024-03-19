@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../css/Login.css'; // Import CSS file for styling
+import '../css/Login.css';
 import axios from 'axios'
+import { API } from '../utils/config';
 const Login = ({ setIsLoggedIn }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,7 +13,7 @@ const Login = ({ setIsLoggedIn }) => {
             password
         }
         try {
-            const res = await axios.post('http://localhost:8000/api/v1/access/login', form);
+            const res = await axios.post(`${API}access/login`, form);
             if (res.data.metadata.status === 401) {
                 return alert(res.data.message)
             }
