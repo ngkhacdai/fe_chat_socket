@@ -1,4 +1,3 @@
-/* ChatBox.css */
 
 .chat-container {
     display: grid;
@@ -74,7 +73,6 @@
     align-items: center;
 }
 
-/* Tin nhắn nhập */
 .message-input {
     flex-grow: 1;
     padding: 10px;
@@ -84,7 +82,6 @@
     /* Khoảng cách giữa input và button */
 }
 
-/* Nút "Send" và "Logout" */
 .send-button,
 .logout-button {
     padding: 10px 20px;
